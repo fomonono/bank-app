@@ -1,0 +1,80 @@
+const usersTable = document.getElementById('usersTable');
+
+function renderUsers(id, fname, lname, account, email, acType, pin, balance){
+    const tableRow = document.createElement('tr');
+
+    const Id = document.createElement('td');
+    Id.setAttribute('class', 'border border-2 p-2');
+    Id.innerText = id;
+
+    const fName = document.createElement('td');
+    fName.setAttribute('class', 'border border-2 p-2');
+    fName.innerText = fname;
+
+    const lName = document.createElement('td');
+    lName.setAttribute('class', 'border border-2 p-2');
+    lName.innerText = lname;
+
+    const acc = document.createElement('td');
+    acc.setAttribute('class', 'border border-2 p-2');
+    acc.innerText = account;
+
+    const mail = document.createElement('td');
+    mail.setAttribute('class', 'border border-2 p-2');
+    mail.innerText = email;
+
+    const accType = document.createElement('td');
+    accType.setAttribute('class', 'border border-2 p-2');
+    accType.innerText = acType;
+
+    const Pin = document.createElement('td');
+    Pin.setAttribute('class', 'border border-2 p-2');
+    Pin.innerText = pin;
+
+    const Balance = document.createElement('td');
+    Balance.setAttribute('class', 'border border-2 p-2');
+    Balance.innerText = balance;
+
+    const tableData = document.createElement('td');
+    tableData.setAttribute('class', 'border border-2 p-2 text-center');
+    
+    const tDbtn = document.createElement('button');
+    tDbtn.setAttribute('class', 'bg-blue-500 rounded w-6/12 text-white py-1 px-3 buttonClick');
+    tDbtn.setAttribute('value', id);
+    tDbtn.setAttribute('type', 'submit');
+    tDbtn.innerText = 'Click';
+
+    tDbtn.addEventListener('click', () => {
+        const storeValue = id;
+        sessionStorage.setItem('storeValue', storeValue)
+        window.location.href = `./transactions.html`;
+    });
+
+    tableRow.appendChild(Id);
+    tableRow.appendChild(fName);
+    tableRow.appendChild(lName);
+    tableRow.appendChild(acc);
+    tableRow.appendChild(mail);
+    tableRow.appendChild(accType);
+    tableRow.appendChild(Pin);
+    tableRow.appendChild(Balance);
+    tableData.appendChild(tDbtn);
+    tableRow.appendChild(tableData);
+    usersTable.appendChild(tableRow)
+}
+
+axios.get(`http://localhost:5050/accounts`).then((response)=>{
+    console.log(response)
+    response.data.forEach((users)=>{
+        renderUsers(
+            users.id, 
+            users.first_name,
+            users.last_name, 
+            users.account_number, 
+            users.email,
+            users.account_type,
+            users.pin_code, 
+            users.balance
+        )
+    })
+})

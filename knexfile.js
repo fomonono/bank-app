@@ -6,10 +6,13 @@ module.exports = {
     client: 'pg',
     connection: {
     host : 'localhost',
-    port: 5432,
-     user: process.env.DB_USER,     
-      password: process.env.DB_PASSWORD,
+    port: 5544,
+    user: process.env.DB_USER,     
+    password: process.env.DB_PASSWORD,
     database: 'bank-app',
-    }
+    },
+    seeds: {
+      directory: './seeds',
+    },
   },
 };
