@@ -1,14 +1,22 @@
 exports.up = function(knex) {
   return knex.schema.createTable('transactions', function (table) {
-    table.integer('Balance');
-    table.integer('Credited');
-    table.integer('Debited');
-    table.string('Recived_From').notNullable();
-    table.string('Transfered_To').notNullable();
-    table.string('Transaction_Date').notNullable();
-});
+    table.integer('id');
+    table.integer('balance');
+    table.integer('credited');
+    table.integer('debited');
+    table.integer('recived_from')
+    .unsigned()
+    .references('id')
+    .inTable('accounts')
+    .onDelete('CASCADE');
+    table.integer('transfered_to')
+    .unsigned()
+    .references('id')
+    .inTable('accounts')
+    .onDelete('CASCADE');
+    table.string('transaction_date').defaultTo(knex.fn.now());
+  });
 };
-
 
 exports.down = function(knex) {
   return knex.schema.dropTable('transactions');
