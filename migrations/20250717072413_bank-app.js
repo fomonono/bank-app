@@ -1,13 +1,13 @@
-module.exports = {
-  development: {
-    client: 'pg',
-    connection: { user: 'me', database: 'my_app' },
-  },
-  production: {
-    client: 'pg',
-    connection: process.env.DATABASE_URL,
-  },
-};
+// module.exports = {
+//   development: {
+//     client: 'pg',
+//     connection: { user: 'me', database: 'my_app' },
+//   },
+//   production: {
+//     client: 'pg',
+//     connection: process.env.DATABASE_URL,
+//   },
+// };
 
 exports.up = function(knex) {
   return knex.schema.createTable('accounts', function (table) {

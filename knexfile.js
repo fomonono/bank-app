@@ -1,12 +1,14 @@
+require('dotenv').config();
+
 module.exports = {
 
   development: {
     client: 'pg',
     connection: {
-      host : 'localhost',
-    port: 3306,
-    user: 'kuenzang',
-    password: '1234',
+    host : 'localhost',
+    port: 5432,
+     user: process.env.DB_USER,     
+      password: process.env.DB_PASSWORD,
     database: 'bank-app',
     }
   },
