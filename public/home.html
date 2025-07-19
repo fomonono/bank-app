@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
     input[type=number]::-webkit-inner-spin-button,
     input[type=number]::-webkit-outer-spin-button {
@@ -27,44 +28,47 @@
             <form id="createAcc" class="border border-2 rounded w-2/5 mx-auto grid grid-cols-4 gap-4 text-left p-4 mt-5 hidden">
 
                 <label for="firstName" class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]">First Name:</label>
-                <input type="text" id="firstName" name="firstName" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
+                <input type="text" id="firstName" name="first_name" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
 
                 <label for="lastName" class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]">Last Name:</label>
-                <input type="text" id="lastName" name="lastName" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
+                <input type="text" id="lastName" name="last_name" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
 
                 <label for="email" class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]">Email:</label>
                 <input type="email" id="email" name="email" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
 
                 <label for="phone" class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]">Phone Number:</label>
-                <input type="number" id="phone" name="phone" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
+                <input type="number" id="phone" name="phone_number" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
 
                 <label for="accountNumber" class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]">Account Number:</label>
-                <input type="number" id="accountNumber" name="accountNumber" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
+                <input type="number" id="accountNumber" name="account_number" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
 
                 <label for="pinCode" class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]">Pin Code:</label>
-                <input type="number" id="pinCode" name="pinCode" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
+                <input type="number" id="pinCode" name="pin_code" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
 
                 <label for="accountType" class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]">Account Type:</label>
-                <input type="number" id="accountType" name="accountType" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
+                <input type="text" id="accountType" name="account_type" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
+
+                <label for="depositeAmount" class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]">Amount:</label>
+                <input type="number" id="depositeAmount" name="balance" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
 
                 <div class="col-span-4 text-right">
-                    <button class="bg-[#2e3a4d] w-1/5 text-white px-4 py-2 rounded rounded-xl">Submit</button>
+                    <button class="bg-[#2e3a4d] w-1/5 text-white px-4 py-2 rounded rounded-xl" type="submit">Submit</button>
                 </div>
 
             </form>
 
             <form id="transferMoney" class="border border-2 rounded w-2/5 mx-auto grid grid-cols-1 gap-10 text-left p-10 mt-10 hidden">
-                <input class="focus:outline-none border border-[#2e3a4d] border-2 shadow-xl/20 rounded-lg py-2 px-4" type="text" placeholder="Source Account">
-                <input class="focus:outline-none border border-[#2e3a4d] border-2 shadow-xl/20 rounded-lg py-2 px-4" type="text" placeholder="Destination Account">
-                <input class="focus:outline-none border border-[#2e3a4d] border-2 shadow-xl/20 rounded-lg py-2 px-4" type="text" placeholder="Amount">
+                <input class="focus:outline-none border border-[#2e3a4d] shadow-xl/20 rounded-lg py-2 px-4" type="text" placeholder="Source Account">
+                <input class="focus:outline-none border border-[#2e3a4d] shadow-xl/20 rounded-lg py-2 px-4" type="text" placeholder="Destination Account">
+                <input class="focus:outline-none border border-[#2e3a4d] shadow-xl/20 rounded-lg py-2 px-4" type="text" placeholder="Amount">
                 <div class="text-right">
                     <button class="bg-[#2e3a4d] w-1/5 text-white px-4 py-2 rounded rounded-xl">Submit</button>
                 </div>
             </form>
 
             <form id="withdrawMoney" class="border border-2 rounded w-2/5 mx-auto grid grid-cols-1 gap-10 text-left p-10 mt-10 hidden">
-                <input class="focus:outline-none border border-[#2e3a4d] border-2 shadow-xl/20 rounded-lg py-2 px-4" type="text" placeholder="Source Account">
-                <input class="focus:outline-none border border-[#2e3a4d] border-2 shadow-xl/20 rounded-lg py-2 px-4" type="text" placeholder="Amount">
+                <input class="focus:outline-none border border-[#2e3a4d] shadow-xl/20 rounded-lg py-2 px-4" type="text" placeholder="Source Account">
+                <input class="focus:outline-none border border-[#2e3a4d] shadow-xl/20 rounded-lg py-2 px-4" type="text" placeholder="Amount">
                 <div class="text-right">
                     <button class="bg-[#2e3a4d] w-1/5 text-white px-4 py-2 rounded rounded-xl">Submit</button>
                 </div>

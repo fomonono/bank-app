@@ -4,10 +4,11 @@ exports.seed = async function(knex) {
     {
       first_name: 'Dawa', 
       last_name: 'Tamang', 
-      account_number: '123456789098', 
       email: 'dawa@gmail.com',
-      account_type: 'Saving Account',
+      phone_number: '123456',
+      account_number: '123456789098', 
       pin_code: '123456', 
+      account_type: 'Saving Account',
       balance: '111111',
     },
     {
@@ -15,8 +16,9 @@ exports.seed = async function(knex) {
       last_name: 'Tshering', 
       account_number: '123456789012',
       email: 'dawa@gmail.com',
-      account_type: 'Fix Deposite',
+      phone_number: '123456',
       pin_code: '123656', 
+      account_type: 'Fix Deposite',
       balance: '222222'
     }
   ]);
