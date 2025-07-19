@@ -15,15 +15,30 @@
   </style>
 </head>
 <body>
-    <main class="bg-[url(../assect/imageforbanking.jpg)] h-screen bg-cover bg-center bg-no-repeat relative overflow-hidden">
+    <main class="bg-[url(../assect/imageforbanking.jpg)] min-h-screen bg-cover bg-center bg-no-repeat relative overflow-hidden">
         <div class="absolute top-0 left-0 w-full h-full bg-[rgba(194,228,244,.9)]"></div>
         <div class="w-full h-full absolute z-10 text-center top-1/4">
             <h1 class="text-4xl text-[#2e3a4d] font-bold">Welcome to the <span class="text-[#279dec] text-5xl font-extrabold">CDK</span> Bank</h1>
 
-            <form id="searchAcc" class="w-6/12 mx-auto flex items-center justify-center gap-3 my-5 py-5 hidden">
-                <input class="w-full h-15 w-2/5 border border-1 rounded-4xl focus:outline-none px-3" type="text">
-                <button id="submitBtn" class="bg-[#2e3a4d] h-15 w-1/5 text-white text-lg font-semibold py-1 px-3 rounded-4xl" type="submit">Search</button>
+            <form id="searchAcc" class="w-2/5 mx-auto flex items-center justify-center gap-3 my-5 py-5 hidden">
+                <input id="accountSearch" class="w-full h-15 border border-1 rounded-4xl focus:outline-none px-10" type="text" placeholder="Account Number">
+                <button class="bg-[#2e3a4d] h-15 w-2/5 text-white text-lg font-semibold py-1 px-3 rounded-4xl" type="submit">Search</button>
             </form>
+
+            <table id="userTable" class="w-[90%] mx-auto my-5 hidden">
+                <tr>
+                    <th class="border border-2">ID</th>
+                    <th class="border border-2">First Name</th>
+                    <th class="border border-2">Last Name</th>
+                    <th class="border border-2">Email</th>
+                    <th class="border border-2">Account Number</th>
+                    <th class="border border-2">Phone Number</th>
+                    <th class="border border-2">Pin Code</th>
+                    <th class="border border-2">Account Type</th>
+                    <th class="border border-2">Balance</th>
+                    <th class="border border-2">Sign Up Date</th>
+                </tr>
+            </table>
 
             <form id="createAcc" class="border border-2 rounded w-2/5 mx-auto grid grid-cols-4 gap-4 text-left p-4 mt-5 hidden">
 

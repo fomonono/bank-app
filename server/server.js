@@ -26,6 +26,12 @@ app.get('/accounts/:id', async(req, res)=>{
   res.send(data);
 })
 
+app.get('/accounts/number/:account_number', async(req, res)=>{
+  const { account_number } = req.params;
+  const data = await kn('accounts').where('account_number', account_number);
+  res.send(data);
+})
+
 app.get('/transactions', async(req, res)=>{
   const data = await kn('transactions').select('*');
   res.send(data);
