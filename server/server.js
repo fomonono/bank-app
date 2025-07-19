@@ -37,6 +37,17 @@ app.get('/transactions/:id', async(req, res)=>{
   res.send(data);
 })
 
+app.post('/accounts', async(req, res)=>{
+  try{
+    const { first_name, last_name, email, account_number, phone_number, pin_code, account_type, balance } = req.body;
+    await kn('accounts').insert({ first_name, last_name, email, account_number, phone_number, pin_code, account_type, balance });
+    return res.status(201).json({ message: 'Account Created Successfully' });
+  }catch (err) {
+    console.error('Database insert error:', err);
+    res.status(500).json({ error: 'Failed to create account' });
+  }
+})
+
 app.listen(port, ()=>{
   console.log(`I am listening to ${port}`)
 })
