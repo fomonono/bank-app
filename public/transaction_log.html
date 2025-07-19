@@ -3,20 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transactions</title>
+    <title>Transaction Log</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <section class="bg-[#C2E4F4] h-screen p-50">
-        <table class="w-3/5">
-            <tr>
-                <td id="Tname"><span class="text-lg font-semibold">Name: </span>!</td>
-                <td id="TaccNum"><span class="text-lg font-semibold">Account Number: </span>!</td>
-                <td id="Tbal"><span class="text-lg font-semibold">Total Balance: </span>!</td>
-            </tr>
-        </table>
-        <table id="transactionsTable" class="w-full my-5">
+        <table id="transactionLogTable" class="w-full my-5">
             <tr>
                 <th class="border border-2">ID</th>
                 <th class="border border-2">Balance</th>
@@ -29,6 +22,6 @@
         </table>
     </section>
 
-    <script src="./JS/transactions.js"></script>
+    <script src="./JS/transaction_log.js"></script>
 </body>
 </html>
