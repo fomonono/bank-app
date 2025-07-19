@@ -39,7 +39,6 @@ function renderTransactions(id, balance, credited, debited, recieved, transferre
     tableRow.appendChild(Transferred);
     tableRow.appendChild(Date);
     transactionLogTable.appendChild(tableRow)
-
 }
 
 axios.get(`http://localhost:5050/transactions`).then((response)=>{

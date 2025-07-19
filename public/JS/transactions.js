@@ -42,7 +42,6 @@ function renderTransactions(id, balance, credited, debited, recieved, transferre
     tableRow.appendChild(Transferred);
     tableRow.appendChild(Date);
     transactionsTable.appendChild(tableRow)
-
 }
 
 function usersDetail(name, account, balance){
@@ -50,7 +49,6 @@ function usersDetail(name, account, balance){
     TaccNum.lastChild.nodeValue = account;
     Tbal.lastChild.nodeValue = balance;
 }
-
 
 const retrievedValue = sessionStorage.getItem('storeValue');
 

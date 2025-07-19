@@ -43,16 +43,16 @@ function renderUsers(id, fname, lname, email, account, number, pin, acType, bala
     Date.setAttribute('class', 'border border-2 p-2');
     Date.innerText = date;
 
-    const tableData = document.createElement('td');
-    tableData.setAttribute('class', 'border border-2 p-2 text-center');
+    const transaction = document.createElement('td');
+    transaction.setAttribute('class', 'border border-2 p-2 text-center');
     
-    const tDbtn = document.createElement('button');
-    tDbtn.setAttribute('class', 'bg-[#2e3a4d] rounded w-6/12 text-white py-1 px-3 buttonClick');
-    tDbtn.setAttribute('value', id);
-    tDbtn.setAttribute('type', 'submit');
-    tDbtn.innerText = 'Click';
+    const transactionButton = document.createElement('button');
+    transactionButton.setAttribute('class', 'bg-[#2e3a4d] rounded text-white py-1 px-3 buttonClick');
+    transactionButton.setAttribute('value', id);
+    transactionButton.setAttribute('type', 'submit');
+    transactionButton.innerText = 'Click';
 
-    tDbtn.addEventListener('click', () => {
+    transactionButton.addEventListener('click', () => {
         const storeValue = id;
         sessionStorage.setItem('storeValue', storeValue)
         window.location.href = `./transactions.html`;
@@ -68,8 +68,8 @@ function renderUsers(id, fname, lname, email, account, number, pin, acType, bala
     tableRow.appendChild(accType);
     tableRow.appendChild(Balance);
     tableRow.appendChild(Date)
-    tableData.appendChild(tDbtn);
-    tableRow.appendChild(tableData);
+    transaction.appendChild(transactionButton);
+    tableRow.appendChild(transaction);
     usersTable.appendChild(tableRow);
 }
 
