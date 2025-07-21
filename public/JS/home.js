@@ -3,13 +3,15 @@ const create = document.getElementById('create');
 const send = document.getElementById('send');
 const withdraw = document.getElementById('withdraw');
 const userTable = document.getElementById('userTable');
-
+const navigation = document.getElementById('navigation');
+const reset = document.getElementById('reset');
 const searchAcc = document.getElementById('searchAcc');
 const createAcc = document.getElementById('createAcc');
 const transferMoney = document.getElementById('transferMoney');
 const withdrawMoney = document.getElementById('withdrawMoney');
 const actionButton = document.getElementById('actionBtnContainer');
 
+//Search User by Account Number
 search.addEventListener('click', (event)=>{
     event.preventDefault()
     actionButton.classList.add('hidden')
@@ -38,7 +40,13 @@ searchAcc.addEventListener('submit', function(event) {
         })
     })
     userTable.classList.remove('hidden')
+    navigation.classList.remove('hidden')
+    searchAcc.reset()
 });
+
+reset.addEventListener('click', ()=>{
+    location.reload()
+})
 
 function renderUser(id, fname, lname, email, account, number, pin, acType, balance, date){
     const tableRow = document.createElement('tr');
@@ -124,6 +132,7 @@ function renderUser(id, fname, lname, email, account, number, pin, acType, balan
     userTable.appendChild(tableRow);
 }
 
+//Create Account Form Display
 create.addEventListener('click', (event)=>{
     event.preventDefault()
     actionButton.classList.add('hidden')
@@ -131,6 +140,7 @@ create.addEventListener('click', (event)=>{
     createAcc.classList.add('block');
 })
 
+//Transfer Money Form Display
 send.addEventListener('click', (event)=>{
     event.preventDefault()
     actionButton.classList.add('hidden')
@@ -138,6 +148,7 @@ send.addEventListener('click', (event)=>{
     transferMoney.classList.add('block');
 })
 
+//Withdraw Money Form Display
 withdraw.addEventListener('click', (event)=>{
     event.preventDefault()
     actionButton.classList.add('hidden')
@@ -145,6 +156,7 @@ withdraw.addEventListener('click', (event)=>{
     withdrawMoney.classList.add('block');
 })
 
+//Create Account Form Submmit function
 function createAccount(){
     const formData = new FormData(createAcc);
     const body = Object.fromEntries(formData);
