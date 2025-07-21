@@ -1,80 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
-      input[type="number"]::-webkit-inner-spin-button,
-      input[type="number"]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <main
-      class="bg-[url(../assect/imageforbanking.jpg)] min-h-screen bg-cover bg-center bg-no-repeat relative overflow-hidden"
-    >
-      <div
-        class="absolute top-0 left-0 w-full h-full bg-[rgba(194,228,244,.9)]"
-      ></div>
-      <div class="w-full h-full absolute z-10 text-center top-1/4">
-        <h1 class="text-4xl text-[#2e3a4d] font-bold">
-          Welcome to the
-          <span class="text-[#279dec] text-5xl font-extrabold">CDK</span> Bank
-        </h1>
-
-        <form
-          id="searchAcc"
-          class="w-2/5 mx-auto flex items-center justify-center gap-3 my-5 py-5 hidden"
-        >
-          <input
-            id="accountSearch"
-            class="w-full h-15 border border-1 rounded-4xl focus:outline-none px-10"
-            type="text"
-            placeholder="Account Number"
-          />
-          <button
-            class="bg-[#2e3a4d] h-15 w-2/5 text-white text-lg font-semibold py-1 px-3 rounded-4xl"
-            type="submit"
-          >
-            Search
-          </button>
-        </form>
-
-        <table id="userTable" class="w-[90%] mx-auto my-5 hidden">
-          <tr>
-            <th class="border border-2">ID</th>
-            <th class="border border-2">First Name</th>
-            <th class="border border-2">Last Name</th>
-            <th class="border border-2">Email</th>
-            <th class="border border-2">Account Number</th>
-            <th class="border border-2">Phone Number</th>
-            <th class="border border-2">Pin Code</th>
-            <th class="border border-2">Account Type</th>
-            <th class="border border-2">Balance</th>
-            <th class="border border-2">Sign Up Date</th>
-          </tr>
-        </table>
-
-        <form
-          id="createAcc"
-          class="border border-2 rounded w-2/5 mx-auto grid grid-cols-4 gap-4 text-left p-4 mt-5 hidden"
-        >
-          <label
-            for="firstName"
-            class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]"
-            >First Name:</label
-          >
-          <input
-            type="text"
-            id="firstName"
-            name="first_name"
-            class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2"
-          />
         /* To remove the spinner (increment/decrement) controls from input element */
 
         /* Chrome, Safari, Edge, Opera */
@@ -126,208 +58,30 @@
             <!-- Create Account Form Start-->
             <form id="createAcc" class="border border-2 rounded w-2/5 mx-auto grid grid-cols-4 gap-4 text-left p-4 mt-5 hidden">
 
-          <label
-            for="lastName"
-            class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]"
-            >Last Name:</label
-          >
-          <input
-            type="text"
-            id="lastName"
-            name="last_name"
-            class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2"
-          />
+                <label for="firstName" class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]">First Name:</label>
+                <input type="text" id="firstName" name="first_name" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
 
-          <label
-            for="email"
-            class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]"
-            >Email:</label
-          >
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2"
-          />
+                <label for="lastName" class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]">Last Name:</label>
+                <input type="text" id="lastName" name="last_name" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
 
-          <label
-            for="phone"
-            class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]"
-            >Phone Number:</label
-          >
-          <input
-            type="number"
-            id="phone"
-            name="phone_number"
-            class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2"
-          />
+                <label for="email" class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]">Email:</label>
+                <input type="email" id="email" name="email" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
 
-          <label
-            for="accountNumber"
-            class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]"
-            >Account Number:</label
-          >
-          <input
-            type="number"
-            id="accountNumber"
-            name="account_number"
-            class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2"
-          />
+                <label for="phone" class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]">Phone Number:</label>
+                <input type="number" id="phone" name="phone_number" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
 
-          <label
-            for="pinCode"
-            class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]"
-            >Pin Code:</label
-          >
-          <input
-            type="number"
-            id="pinCode"
-            name="pin_code"
-            class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2"
-          />
+                <label for="accountNumber" class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]">Account Number:</label>
+                <input type="number" id="accountNumber" name="account_number" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
 
-          <label
-            for="accountType"
-            class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]"
-            >Account Type:</label
-          >
-          <input
-            type="text"
-            id="accountType"
-            name="account_type"
-            class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2"
-          />
+                <label for="pinCode" class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]">Pin Code:</label>
+                <input type="number" id="pinCode" name="pin_code" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
 
-          <label
-            for="depositeAmount"
-            class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]"
-            >Amount:</label
-          >
-          <input
-            type="number"
-            id="depositeAmount"
-            name="balance"
-            class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2"
-          />
+                <label for="accountType" class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]">Account Type:</label>
+                <input type="text" id="accountType" name="account_type" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
 
-          <div class="col-span-4 text-right">
-            <button
-              class="bg-[#2e3a4d] w-1/5 text-white px-4 py-2 rounded rounded-xl"
-              type="submit"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
+                <label for="depositeAmount" class="col-span-1 self-center text-lg font-semibold text-[#2e3a4d]">Amount:</label>
+                <input type="number" id="depositeAmount" name="balance" class="focus:outline-none col-span-3 border border-[#2e3a4d] rounded-lg p-2">
 
-        <form
-          id="transferMoney"
-          class="border border-2 rounded w-2/5 mx-auto grid grid-cols-1 gap-10 text-left p-10 mt-10 hidden"
-        >
-          <input
-            class="focus:outline-none border border-[#2e3a4d] shadow-xl/20 rounded-lg py-2 px-4"
-            type="text"
-            name="source_account"
-            placeholder="Source Account"
-          />
-          <input
-            class="focus:outline-none border border-[#2e3a4d] shadow-xl/20 rounded-lg py-2 px-4"
-            type="text"
-            name="destination_account"
-            placeholder="Destination Account"
-          />
-          <input
-            class="focus:outline-none border border-[#2e3a4d] shadow-xl/20 rounded-lg py-2 px-4"
-            type="text"
-            name="amount"
-            placeholder="Amount"
-          />
-          <div class="text-right">
-            <button
-              class="bg-[#2e3a4d] w-1/5 text-white px-4 py-2 rounded rounded-xl"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
-
-        <form
-          id="withdrawMoney"
-          class="border border-2 rounded w-2/5 mx-auto grid grid-cols-1 gap-10 text-left p-10 mt-10 hidden"
-        >
-          <input
-            id="withdrawSourceAccount"
-            name="source_account"
-            class="focus:outline-none border border-[#2e3a4d] shadow-xl/20 rounded-lg py-2 px-4"
-            type="text"
-            placeholder="Source Account"
-          />
-          <input
-            id="withdrawAmount"
-            name="amount"
-            class="focus:outline-none border border-[#2e3a4d] shadow-xl/20 rounded-lg py-2 px-4"
-            type="number"
-            placeholder="Amount"
-            min="0"
-          />
-          <div class="text-right">
-            <button
-              class="bg-[#2e3a4d] w-1/5 text-white px-4 py-2 rounded rounded-xl"
-              type="submit"
-            >
-              Submit
-            </button>
-          </div>
-          <div
-            id="withdrawMessage"
-            class="text-center text-lg font-semibold hidden"
-          ></div>
-        </form>
-
-        <div
-          id="actionBtnContainer"
-          class="w-6/12 mx-auto text-center grid grid-cols-3 gap-5 mt-15"
-        >
-          <a href="./accounts.html"
-            ><div
-              class="h-full w-full border border-2 border-[#121e30] rounded-xl text-[#121e30] text-xl font-semibold hover:bg-[#2e3a4d] hover:border-none hover:text-white cursor-pointer p-5"
-            >
-              <h2>All Users</h2>
-            </div></a
-          >
-          <div
-            id="search"
-            class="h-full w-full border border-2 border-[#121e30] rounded-xl text-[#121e30] text-xl font-semibold hover:bg-[#2e3a4d] hover:border-none hover:text-white cursor-pointer p-5"
-          >
-            <h2>Search Account</h2>
-          </div>
-          <div
-            id="create"
-            class="h-full w-full border border-2 border-[#121e30] rounded-xl text-[#121e30] text-xl font-semibold hover:bg-[#2e3a4d] hover:border-none hover:text-white cursor-pointer p-5"
-          >
-            <h2>Create Account</h2>
-          </div>
-          <div
-            id="send"
-            class="h-full w-full border border-2 border-[#121e30] rounded-xl text-[#121e30] text-xl font-semibold hover:bg-[#2e3a4d] hover:border-none hover:text-white cursor-pointer p-5"
-          >
-            <h2>Transfer Money</h2>
-          </div>
-          <div
-            id="withdraw"
-            class="h-full w-full border border-2 border-[#121e30] rounded-xl text-[#121e30] text-xl font-semibold hover:bg-[#2e3a4d] hover:border-none hover:text-white cursor-pointer p-5"
-          >
-            <h2>Withdraw Money</h2>
-          </div>
-          <a href="./transaction_log.html"
-            ><div
-              class="h-full w-full border border-2 border-[#121e30] rounded-xl text-[#121e30] text-xl font-semibold hover:bg-[#2e3a4d] hover:border-none hover:text-white cursor-pointer p-5"
-            >
-              <h2>Transaction Log</h2>
-            </div></a
-          >
-        </div>
-      </div>
                 <div class="col-span-4 text-right">
                     <button class="border-2 border-[#2e3a4d] w-1/5 text-[#2e3a4d] font-semibold px-4 py-2 rounded rounded-xl" type="reset">Cancel</button>
                     <button class="bg-[#2e3a4d] w-1/5 text-white px-4 py-2 rounded rounded-xl" type="submit">Submit</button>
@@ -373,5 +127,5 @@
     </main>
 
     <script src="./JS/home.js"></script>
-  </body>
+</body>
 </html>
