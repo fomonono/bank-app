@@ -82,7 +82,14 @@ app.post("/accounts", async (req, res) => {
 
 app.post("/withdraw", async (req, res) => {
   const { source_account, amount } = req.body;
+  if (!source_account || !amount) {
+    return res.status(400);
+  }
+
   const withdrawalAmount = Number(amount);
+  if (isNaN(withdrawalAmount)) {
+    return null;
+  }
 
   try {
     const result = await kn.transaction(async (trx) => {
@@ -90,6 +97,14 @@ app.post("/withdraw", async (req, res) => {
         .where("account_number", source_account)
         .first();
 
+      if (!account) {
+        res.sendStatus(400);
+      }
+
+      if (account.balance < withdrawalAmount) {
+        res.sendStatus(400);
+        return;
+      }
       await trx("accounts")
         .where("account_number", source_account)
         .update({
@@ -113,7 +128,15 @@ app.post("/withdraw", async (req, res) => {
 
 app.post("/transfer", async (req, res) => {
   const { source_account, destination_account, amount } = req.body;
+
+  if (!source_account || !destination_account || !amount) {
+    return res.status(400);
+  }
+
   const transferAmount = Number(amount);
+  if (isNaN(transferAmount)) {
+    return null;
+  }
 
   try {
     const result = await kn.transaction(async (trx) => {
@@ -124,6 +147,15 @@ app.post("/transfer", async (req, res) => {
       const destAccount = await trx("accounts")
         .where("account_number", destination_account)
         .first();
+
+      if (!sourceAccount || !destAccount) {
+        res.sendStatus(400);
+      }
+
+      if (sourceAccount.balance < transferAmount) {
+        res.sendStatus(400);
+        return;
+      }
 
       await trx("accounts")
         .where("account_number", source_account)
