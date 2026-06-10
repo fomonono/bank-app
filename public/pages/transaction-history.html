@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CDK Bank Transaction History</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./home.html">CDK Bank</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="./home.html">Dashboard</a>
+        <a href="./accounts.html">Accounts</a>
+        <a class="active" href="./transaction-history.html">History</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Ledger</p>
+            <h1>Transaction history</h1>
+          </div>
+          <div class="summary-pill">
+            <span id="transactionCount">0</span> records
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Balance after</th>
+                <th>Credited</th>
+                <th>Debited</th>
+                <th>Received from</th>
+                <th>Transferred to</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="transactionHistoryBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">CDK Bank demo for learning full-stack web development.</footer>
+
+    <script src="../js/shared/api.js"></script>
+    <script src="../js/shared/dom.js"></script>
+    <script src="../js/pages/transaction-history.js"></script>
+  </body>
+</html>

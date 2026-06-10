@@ -1,4 +1,13 @@
 {
+  "name": "bank-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server/server.js",
+    "db:migrate": "knex migrate:latest",
+    "db:seed": "knex seed:run",
+    "db:reset": "knex migrate:rollback --all && knex migrate:latest && knex seed:run"
+  },
   "dependencies": {
     "better-sqlite3": "^12.2.0",
     "cors": "^2.8.5",

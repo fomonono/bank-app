@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CDK Bank Dashboard</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./home.html">CDK Bank</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="active" href="./home.html">Dashboard</a>
+        <a href="./accounts.html">Accounts</a>
+        <a href="./transaction-history.html">History</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="hero dashboard-hero">
+        <div class="hero-content">
+          <p class="eyebrow">CDK Bank operations</p>
+          <h1>Manage customer accounts from one clear workspace.</h1>
+          <p>
+            Open accounts, move funds, track withdrawals, and review account activity with a simple full-stack banking demo.
+          </p>
+          <div class="button-group">
+            <a class="btn btn-primary" href="./accounts.html">View accounts</a>
+            <button id="showCreate" class="btn btn-secondary" type="button">Create account</button>
+          </div>
+        </div>
+        <aside class="hero-panel" aria-label="Dashboard summary">
+          <div class="bank-card">
+            <div class="card-chip"></div>
+            <span>CDK OPERATING BALANCE</span>
+            <strong id="dashboardBalance">$0.00</strong>
+            <small>Demo branch portfolio</small>
+          </div>
+          <div class="hero-stats">
+            <div>
+              <span>Accounts</span>
+              <strong id="dashboardAccounts">0</strong>
+            </div>
+            <div>
+              <span>Transfers</span>
+              <strong id="dashboardTransfers">0</strong>
+            </div>
+          </div>
+          <div class="activity-preview">
+            <span class="muted">Latest activity</span>
+            <strong id="dashboardActivity">Loading account activity</strong>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Daily work</p>
+            <h2>Banking operations</h2>
+          </div>
+          <button id="resetView" class="btn btn-ghost" type="button">Clear view</button>
+        </div>
+
+        <div class="action-grid">
+          <button id="showSearch" class="action-card" type="button">
+            <span>Customer service</span>
+            <strong>Find account</strong>
+            <small>Look up balances and details by account number.</small>
+          </button>
+          <button id="showTransfer" class="action-card" type="button">
+            <span>Payments</span>
+            <strong>Send money</strong>
+            <small>Transfer funds between two customer accounts.</small>
+          </button>
+          <button id="showWithdraw" class="action-card" type="button">
+            <span>Cash desk</span>
+            <strong>Cash out</strong>
+            <small>Record a cash withdrawal against one account.</small>
+          </button>
+          <a class="action-card" href="./transaction-history.html">
+            <span>Audit</span>
+            <strong>Transaction history</strong>
+            <small>Review all transfers in the transaction ledger.</small>
+          </a>
+        </div>
+      </section>
+
+      <section class="insight-grid" aria-label="Dashboard insights">
+        <div class="section compact-section">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Health</p>
+              <h2>Today snapshot</h2>
+            </div>
+          </div>
+          <div class="metric-list">
+            <div>
+              <span>Active customer records</span>
+              <strong id="snapshotAccounts">0</strong>
+            </div>
+            <div>
+              <span>Ledger entries</span>
+              <strong id="snapshotTransactions">0</strong>
+            </div>
+            <div>
+              <span>Average account balance</span>
+              <strong id="snapshotAverage">$0.00</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="section compact-section">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Next step</p>
+              <h2>Suggested workflow</h2>
+            </div>
+          </div>
+          <ol class="workflow-list">
+            <li>Open a customer account with an auto-generated account number.</li>
+            <li>Transfer money between demo customers.</li>
+            <li>Review the ledger from the History page.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="searchPanel" class="section hidden">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Lookup</p>
+            <h2>Search account</h2>
+          </div>
+        </div>
+        <form id="searchAccountForm" class="form-grid">
+          <label class="form-field" for="accountSearch">
+            Account number
+            <input id="accountSearch" class="input" type="text" placeholder="Enter account number" required />
+          </label>
+          <button class="btn btn-primary" type="submit">Search account</button>
+        </form>
+        <div id="searchResult" class="message hidden"></div>
+      </section>
+
+      <section id="createPanel" class="section hidden">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Onboarding</p>
+            <h2>Create account</h2>
+          </div>
+        </div>
+        <form id="createAccountForm" class="form-grid two-column">
+          <label class="form-field" for="firstName">
+            First name
+            <input id="firstName" name="first_name" class="input" type="text" required />
+          </label>
+          <label class="form-field" for="lastName">
+            Last name
+            <input id="lastName" name="last_name" class="input" type="text" required />
+          </label>
+          <label class="form-field" for="email">
+            Email
+            <input id="email" name="email" class="input" type="email" required />
+          </label>
+          <label class="form-field" for="phone">
+            Phone number
+            <input id="phone" name="phone_number" class="input" type="tel" required />
+          </label>
+          <label class="form-field" for="newAccountNumber">
+            Account number
+            <div class="input-action">
+              <input id="newAccountNumber" name="account_number" class="input" type="text" readonly required />
+              <button id="generateAccountNumber" class="btn btn-ghost" type="button">Generate</button>
+            </div>
+          </label>
+          <label class="form-field" for="pinCode">
+            PIN code
+            <input id="pinCode" name="pin_code" class="input" type="text" required />
+          </label>
+          <label class="form-field" for="accountType">
+            Account type
+            <select id="accountType" name="account_type" class="input" required>
+              <option value="">Select account type</option>
+              <option value="Savings">Savings</option>
+              <option value="Checking">Checking</option>
+              <option value="Fixed Deposit">Fixed Deposit</option>
+              <option value="Business">Business</option>
+            </select>
+          </label>
+          <label class="form-field" for="openingBalance">
+            Opening balance
+            <input id="openingBalance" name="balance" class="input" type="number" min="0" step="0.01" required />
+          </label>
+          <div class="form-actions">
+            <button class="btn btn-ghost" type="reset">Reset</button>
+            <button class="btn btn-primary" type="submit">Create account</button>
+          </div>
+        </form>
+        <div id="createMessage" class="message hidden"></div>
+      </section>
+
+      <section id="transferPanel" class="section hidden">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Payments</p>
+            <h2>Transfer money</h2>
+          </div>
+        </div>
+        <form id="transferMoneyForm" class="form-grid">
+          <label class="form-field" for="sourceAccountTransfer">
+            Source account
+            <input id="sourceAccountTransfer" name="source_account" class="input" type="text" required />
+          </label>
+          <label class="form-field" for="destinationAccount">
+            Destination account
+            <input id="destinationAccount" name="destination_account" class="input" type="text" required />
+          </label>
+          <label class="form-field" for="transferAmount">
+            Amount
+            <input id="transferAmount" name="amount" class="input" type="number" min="1" step="0.01" required />
+          </label>
+          <button class="btn btn-primary" type="submit">Submit transfer</button>
+        </form>
+        <div id="transferMessage" class="message hidden"></div>
+      </section>
+
+      <section id="withdrawPanel" class="section hidden">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Cash</p>
+            <h2>Withdraw money</h2>
+          </div>
+        </div>
+        <form id="withdrawMoneyForm" class="form-grid">
+          <label class="form-field" for="withdrawSourceAccount">
+            Source account
+            <input id="withdrawSourceAccount" name="source_account" class="input" type="text" required />
+          </label>
+          <label class="form-field" for="withdrawAmount">
+            Amount
+            <input id="withdrawAmount" name="amount" class="input" type="number" min="1" step="0.01" required />
+          </label>
+          <button class="btn btn-primary" type="submit">Submit withdrawal</button>
+        </form>
+        <div id="withdrawMessage" class="message hidden"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">CDK Bank demo for learning full-stack web development.</footer>
+
+    <script src="../js/shared/api.js"></script>
+    <script src="../js/shared/dom.js"></script>
+    <script src="../js/pages/home.js"></script>
+  </body>
+</html>

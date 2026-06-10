@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CDK Bank Account Transactions</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./home.html">CDK Bank</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="./home.html">Dashboard</a>
+        <a href="./accounts.html">Accounts</a>
+        <a href="./transaction-history.html">History</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Account activity</p>
+            <h1>Account transactions</h1>
+          </div>
+          <a class="btn btn-secondary" href="./accounts.html">Back to accounts</a>
+        </div>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <span>Name</span>
+            <strong id="accountName">Not selected</strong>
+          </div>
+          <div class="summary-card">
+            <span>Account number</span>
+            <strong id="accountNumber">Not selected</strong>
+          </div>
+          <div class="summary-card">
+            <span>Balance</span>
+            <strong id="accountBalance">$0</strong>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Balance after</th>
+                <th>Credited</th>
+                <th>Debited</th>
+                <th>Received from</th>
+                <th>Transferred to</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="transactionsTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">CDK Bank demo for learning full-stack web development.</footer>
+
+    <script src="../js/shared/api.js"></script>
+    <script src="../js/shared/dom.js"></script>
+    <script src="../js/pages/account-transactions.js"></script>
+  </body>
+</html>
